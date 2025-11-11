@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Chrome",
+            "request": "launch",
+            "type": "chrome",
+            "url": "http://localhost:8080",
+            "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Tomcat 10",
+            "request": "launch",
+            "mainClass": "org.apache.catalina.startup.Bootstrap",
+            "args": ["start"],
+            "env": {
+                "JAVA_HOME": "G:\\Eclipse Adoptium\\jdk-25.0.0.36-hotspot",
+                "JRE_HOME": "G:\\Eclipse Adoptium\\jdk-25.0.0.36-hotspot"
+            }
+        }
+    ]
+}
