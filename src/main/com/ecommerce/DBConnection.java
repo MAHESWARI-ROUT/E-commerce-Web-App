@@ -1,20 +1,17 @@
 package com.ecommerce;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class DBConnection {
-    private static final String URL = "jdbc:mysql://localhost:3306/ecommerce_db";
-    private static final String USER = "root";
-    private static final String PASSWORD = "mitthi@1"; 
-
-    public static Connection getConnection() throws SQLException {
-        try {
+    private static Connection conn;
+    public static Connection getConnection() throws Exception {
+        if (conn == null || conn.isClosed()) {
             Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            throw new SQLException("MySQL JDBC Driver not found.", e);
+            conn = DriverManager.getConnection(
+                "jdbc:mysql://localhost:3306/ecommerce_db",
+                "root",
+                "mitthi@1"
+            );
         }
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        return conn;
     }
 }

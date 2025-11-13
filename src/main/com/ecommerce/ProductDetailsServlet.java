@@ -2,15 +2,15 @@ package com.ecommerce;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.*;
-import java.util.*;
 
-public class ProductServlet extends HttpServlet {
+public class ProductDetailsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
         try {
-            List<Product> products = ProductDAO.getAllProducts();
-            req.setAttribute("products", products);
-            RequestDispatcher rd = req.getRequestDispatcher("ProductCatalog.jsp");
+            int id = Integer.parseInt(req.getParameter("id"));
+            Product p = ProductDAO.getProductById(id);
+            req.setAttribute("product", p);
+            RequestDispatcher rd = req.getRequestDispatcher("ProductDetails.jsp");
             rd.forward(req, res);
         } catch (Exception e) {
             e.printStackTrace();

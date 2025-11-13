@@ -5,70 +5,66 @@
                              https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
 
-    <!-- HelloWorld Servlet -->
-    <servlet>
-        <servlet-name>HelloWorldServlet</servlet-name>
-        <servlet-class>main.HelloWorldServlet</servlet-class>
-    </servlet>
+  <!-- ✅ HelloWorld & FormHandler (existing servlets retained) -->
+  <servlet>
+    <servlet-name>HelloWorldServlet</servlet-name>
+    <servlet-class>main.HelloWorldServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloWorldServlet</servlet-name>
+    <url-pattern>/hello</url-pattern>
+  </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>HelloWorldServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
+  <servlet>
+    <servlet-name>FormHandlerServlet</servlet-name>
+    <servlet-class>main.FormHandlerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormHandlerServlet</servlet-name>
+    <url-pattern>/handleForm</url-pattern>
+  </servlet-mapping>
 
-    <!-- FormHandler Servlet -->
-    <servlet>
-        <servlet-name>FormHandlerServlet</servlet-name>
-        <servlet-class>main.FormHandlerServlet</servlet-class>
-    </servlet>
 
-    <servlet-mapping>
-        <servlet-name>FormHandlerServlet</servlet-name>
-        <url-pattern>/handleForm</url-pattern>
-    </servlet-mapping>
+  <!-- 🛍️ E-COMMERCE SERVLETS -->
+  <servlet>
+    <servlet-name>ProductServlet</servlet-name>
+    <servlet-class>com.ecommerce.ProductServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductServlet</servlet-name>
+    <url-pattern>/ProductServlet</url-pattern>
+  </servlet-mapping>
 
-    <!-- Product Servlet -->
-    <servlet>
-        <servlet-name>ProductServlet</servlet-name>
-        <servlet-class>com.ecommerce.ProductServlet</servlet-class>
-    </servlet>
+  <servlet>
+    <servlet-name>ProductDetailsServlet</servlet-name>
+    <servlet-class>com.ecommerce.ProductDetailsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProductDetailsServlet</servlet-name>
+    <url-pattern>/ProductDetailsServlet</url-pattern>
+  </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>ProductServlet</servlet-name>
-        <url-pattern>/products</url-pattern>
-    </servlet-mapping>
+  <servlet>
+    <servlet-name>CartServlet</servlet-name>
+    <servlet-class>com.ecommerce.CartServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CartServlet</servlet-name>
+    <url-pattern>/CartServlet</url-pattern>
+  </servlet-mapping>
 
-    <!-- Cart Servlet -->
-    <servlet>
-        <servlet-name>CartServlet</servlet-name>
-        <servlet-class>com.ecommerce.CartServlet</servlet-class>
-    </servlet>
+  <servlet>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <servlet-class>com.ecommerce.CheckoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckoutServlet</servlet-name>
+    <url-pattern>/CheckoutServlet</url-pattern>
+  </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>CartServlet</servlet-name>
-        <url-pattern>/cart</url-pattern>
-    </servlet-mapping>
-
-    <!-- Order Servlet -->
-    <servlet>
-        <servlet-name>OrderServlet</servlet-name>
-        <servlet-class>com.ecommerce.OrderServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>OrderServlet</servlet-name>
-        <url-pattern>/checkout</url-pattern>
-    </servlet-mapping>
-
-    <!-- DB Test Servlet -->
-    <servlet>
-        <servlet-name>DBTestServlet</servlet-name>
-        <servlet-class>com.ecommerce.DBTestServlet</servlet-class>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>DBTestServlet</servlet-name>
-        <url-pattern>/dbtest</url-pattern>
-    </servlet-mapping>
+  <!-- 🟩 Default page when accessing http://localhost:8080/MyWebApp -->
+  <welcome-file-list>
+    <welcome-file>ProductServlet</welcome-file>
+  </welcome-file-list>
 
 </web-app>
