@@ -5,7 +5,7 @@
                              https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd"
          version="5.0">
 
-  <!-- ✅ HelloWorld & FormHandler (existing servlets retained) -->
+  <!-- keep your existing HelloWorld & FormHandler -->
   <servlet>
     <servlet-name>HelloWorldServlet</servlet-name>
     <servlet-class>main.HelloWorldServlet</servlet-class>
@@ -24,8 +24,7 @@
     <url-pattern>/handleForm</url-pattern>
   </servlet-mapping>
 
-
-  <!-- 🛍️ E-COMMERCE SERVLETS -->
+  <!-- eCommerce -->
   <servlet>
     <servlet-name>ProductServlet</servlet-name>
     <servlet-class>com.ecommerce.ProductServlet</servlet-class>
@@ -62,9 +61,16 @@
     <url-pattern>/CheckoutServlet</url-pattern>
   </servlet-mapping>
 
-  <!-- 🟩 Default page when accessing http://localhost:8080/MyWebApp -->
+  <servlet>
+    <servlet-name>OrdersServlet</servlet-name>
+    <servlet-class>com.ecommerce.OrdersServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OrdersServlet</servlet-name>
+    <url-pattern>/OrdersServlet</url-pattern>
+  </servlet-mapping>
+
   <welcome-file-list>
     <welcome-file>ProductServlet</welcome-file>
   </welcome-file-list>
-
 </web-app>

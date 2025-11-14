@@ -1,12 +1,13 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
 <title>Checkout</title>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
 <header class="navbar">
   <h1 class="logo">🛒 MyStore</h1>
   <nav>
@@ -17,18 +18,23 @@
 
 <main class="container">
   <h2>Checkout</h2>
+
   <form action="CheckoutServlet" method="post" class="checkout-form">
-    <label>Name:</label>
-    <input type="text" name="name" required>
+
+    <label>Full Name:</label>
+    <input type="text" name="customerName" required>
+
+    <label>Phone:</label>
+    <input type="text" name="phone" required>
 
     <label>Address:</label>
     <textarea name="address" required></textarea>
 
     <label>Payment Method:</label>
-    <select name="payment" required>
-      <option value="card">Credit/Debit Card</option>
-      <option value="upi">UPI</option>
-      <option value="cod">Cash on Delivery</option>
+    <select name="paymentMethod" required>
+      <option value="Card">Credit/Debit Card</option>
+      <option value="UPI">UPI</option>
+      <option value="COD">Cash on Delivery</option>
     </select>
 
     <button type="submit" class="btn">Place Order</button>
@@ -36,7 +42,8 @@
 </main>
 
 <footer>
-  <p>© 2025 MyStore. All rights reserved.</p>
+  <p>© 2025 MyStore</p>
 </footer>
+
 </body>
 </html>

@@ -1,39 +1,41 @@
 package com.ecommerce;
+
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import java.io.*;
-import java.sql.*;
+import java.util.*;
 
 public class CartServlet extends HttpServlet {
-
-    protected void doGet(HttpServletRequest req, HttpServletResponse res)
-            throws ServletException, IOException {
-        try {
-            RequestDispatcher rd = req.getRequestDispatcher("Cart.jsp");
-            rd.forward(req, res);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res)
             throws ServletException, IOException {
-        int productId = Integer.parseInt(req.getParameter("productId"));
-        int qty = Integer.parseInt(req.getParameter("quantity"));
-
-        try (Connection con = DBConnection.getConnection()) {
-            PreparedStatement ps = con.prepareStatement(
-                "INSERT INTO cart (product_id, quantity) VALUES (?, ?)",
-                Statement.RETURN_GENERATED_KEYS
-            );
-            ps.setInt(1, productId);
-            ps.setInt(2, qty);
-            ps.executeUpdate();
-
-            res.sendRedirect("Cart.jsp");
-
-        } catch (Exception e) {
-            e.printStackTrace();
+        res.setCharacterEncoding("UTF-8");
+        HttpSession session = req.getSession(true);
+        @SuppressWarnings("unchecked")
+        Map<Integer, Integer> cart = (Map<Integer, Integer>) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new LinkedHashMap<>();
         }
+
+        String idStr = req.getParameter("productId");
+        String qtyStr = req.getParameter("quantity");
+        if (idStr != null) {
+            int id = Integer.parseInt(idStr);
+            int qty = 1;
+            if (qtyStr != null) {
+                try { qty = Math.max(1, Integer.parseInt(qtyStr)); } catch (Exception ignored) {}
+            }
+
+            cart.put(id, cart.getOrDefault(id, 0) + qty);
+            session.setAttribute("cart", cart);
+        }
+
+        res.sendRedirect("Cart.jsp");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res)
+            throws ServletException, IOException {
+        res.sendRedirect("Cart.jsp");
     }
 }
