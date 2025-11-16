@@ -19,7 +19,6 @@ public class CheckoutServlet extends HttpServlet {
             return;
         }
 
-        // Read form fields
         String name = req.getParameter("customerName");
         String phone = req.getParameter("phone");
         String address = req.getParameter("address");
@@ -31,7 +30,7 @@ public class CheckoutServlet extends HttpServlet {
         StringBuilder summaryText = new StringBuilder();
 
         try {
-            // Calculate total
+            //  total
             for (Map.Entry<Integer, Integer> e : cart.entrySet()) {
                 int productId = e.getKey();
                 int qty = e.getValue();

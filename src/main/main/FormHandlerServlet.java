@@ -1,3 +1,4 @@
+package main;
 
 import java.io.*;
 import jakarta.servlet.*;
@@ -25,5 +26,11 @@ public class FormHandlerServlet extends HttpServlet {
         out.println("<p><b>Email:</b> " + email + "</p>");
         out.println("<p><b>Gender:</b> " + gender + "</p>");
         out.println("</body></html>");
+    }
+     @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.sendRedirect("form.jsp");
     }
 }
